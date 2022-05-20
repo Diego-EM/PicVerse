@@ -1,6 +1,6 @@
 "use strict";
 
-const API_TOKEN = `your_api_token`;
+const API_TOKEN = `P7suvpHZDX31jIYLAXWDrJnbFV9PgTpduapPzn10`;
 const API_URL = `https://api.nasa.gov/planetary/apod?api_key=${API_TOKEN}`;
 
 const backgroundImage = document.getElementById('background_img');
