@@ -88,20 +88,42 @@ button
     width: 30px
     margin: 10px
 
-.presentation
-    animation: presentation $loadImageTimer ease-in-out
+#img_config
+    position: absolute
+    top: 0
+    right: 0
+    display: flex
+    margin: 10px
+    z-index: 10000
 
-.show_title
-    animation: show_title $loadImageTimer ease-in-out
+    button
+        position: relative
+        display: flex
+        align-items: center
+        height: 30px
+        width: 40px
+        margin: 0 5px
+
+        img
+            position: absolute
+
+.contain
+    object-fit: contain !important
 
 .invisible
-    opacity: 0
+    opacity: 0 !important
 
 .hidden
     display: none !important
 
 .blur
-    filter: brightness(0.5) blur(10px)
+    filter: brightness(0.5) blur(10px) !important
+
+.presentation
+    animation: presentation $loadImageTimer ease-in-out
+
+.show_title
+    animation: show_title $loadImageTimer ease-in-out
 
 .zoom-in
     animation: zoom-in 100ms ease-out
