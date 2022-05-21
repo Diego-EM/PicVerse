@@ -94,16 +94,32 @@ button:hover > img {
   margin: 10px;
 }
 
-.presentation {
-  animation: presentation 2.5s ease-in-out;
+#img_config {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  margin: 10px;
+  z-index: 10000;
+}
+#img_config button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 30px;
+  width: 40px;
+  margin: 0 5px;
+}
+#img_config button img {
+  position: absolute;
 }
 
-.show_title {
-  animation: show_title 2.5s ease-in-out;
+.contain {
+  object-fit: contain !important;
 }
 
 .invisible {
-  opacity: 0;
+  opacity: 0 !important;
 }
 
 .hidden {
@@ -111,7 +127,15 @@ button:hover > img {
 }
 
 .blur {
-  filter: brightness(0.5) blur(10px);
+  filter: brightness(0.5) blur(10px) !important;
+}
+
+.presentation {
+  animation: presentation 2.5s ease-in-out;
+}
+
+.show_title {
+  animation: show_title 2.5s ease-in-out;
 }
 
 .zoom-in {
