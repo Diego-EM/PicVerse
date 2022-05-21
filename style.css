@@ -13,21 +13,85 @@ body {
   user-select: none;
 }
 
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: opacity 2.5s;
+  z-index: 10000;
+}
+button img {
+  width: 100%;
+  object-fit: cover;
+  transition: opacity 150ms;
+}
+button:hover > img {
+  opacity: 0.8;
+}
+
 #background_img {
   width: 100vw;
   height: 100vh;
   object-fit: cover;
+  transition: filter 100ms;
+  z-index: 1;
 }
 
-#img_description {
+#img_title {
   position: absolute;
   bottom: 30%;
   margin: 0 20px;
   opacity: 0;
   color: #f1f1f1;
-  font-size: 2em;
+  font-size: 3em;
   font-weight: 600;
   text-align: center;
+  z-index: 10;
+}
+
+#img_description {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  height: 100%;
+  width: 70%;
+  min-width: 350px;
+  max-width: 1020px;
+  color: #f1f1f1;
+  overflow-y: auto;
+  z-index: 100;
+}
+@media screen and (max-width: 600px), (max-height: 670px) {
+  #img_description {
+    justify-content: start;
+    padding: 20px;
+  }
+}
+#img_description #title, #img_description #author, #img_description #date {
+  text-align: center;
+}
+#img_description #title {
+  font-size: 3em;
+  font-weight: 600;
+}
+#img_description #author {
+  font-size: 1.2em;
+}
+#img_description #date {
+  font-size: 1em;
+}
+#img_description #description {
+  font-size: 1.4em;
+  text-align: justify;
+}
+
+#button_info {
+  position: absolute;
+  left: 0;
+  height: 30px;
+  width: 30px;
+  margin: 10px;
 }
 
 .presentation {
@@ -36,6 +100,22 @@ body {
 
 .show_title {
   animation: show_title 2.5s ease-in-out;
+}
+
+.invisible {
+  opacity: 0;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.blur {
+  filter: brightness(0.5) blur(10px);
+}
+
+.zoom-in {
+  animation: zoom-in 100ms ease-out;
 }
 
 @keyframes presentation {
@@ -58,6 +138,16 @@ body {
   100% {
     opacity: 0;
     transform: translateY(0);
+  }
+}
+@keyframes zoom-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 
