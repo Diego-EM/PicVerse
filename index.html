@@ -15,13 +15,16 @@
         <img src="./assets/info.svg" alt="Pic info">
     </button>
     <div id="img_config">
+        <button id="img_search">
+            <img src="./assets/search.svg" alt="search">
+        </button>
         <button id="img_quality">
             <img src="./assets/hd1.svg" alt="HD / OFF">
             <img src="./assets/hd2.svg" alt="HD / ON">
         </button>
         <button id="img_view">
-            <img src="./assets/view1.svg" alt="COVER">
             <img src="./assets/view2.svg" alt="CONTAIN">
+            <img src="./assets/view1.svg" alt="COVER">
         </button>
     </div>
     <h1 id="img_title">Welcome to PicVerse!</h1>
@@ -31,6 +34,13 @@
         <p id="date">2000-08-05</p>
         <p id="description">Look at the sky, the universe and be amazed of all things that are above us.</p>
     </div>
+    <form id="search_modal" class="hidden zoom-in">
+            <label for="date">Enter a date</label>
+            <div>
+                <input type="date" name="date" id="date_input" required>
+                <input type="submit" value="Search" id="search_date">
+            </div>
+    </form>
 <script src="./app.js"></script>
 </body>
 </html>
