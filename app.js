@@ -12,6 +12,8 @@ const buttonView = document.getElementById('img_view');
 const buttonSearch = document.getElementById('img_search');
 const searchDate = document.getElementById('search_date');
 
+let selectedDate = "";
+
 const setBackground = (date) => {
     let URL = API_URL
     if (date) URL += `&date=${date}`;
@@ -51,7 +53,6 @@ initializeState(buttonView, 'invisible', "view", "contain");
 
 if (localStorage.getItem('view') == "contain")
     backgroundImage.classList.add('contain')
-
 backgroundImage.onload = function(){
     this.classList.add('presentation');
     backgroundTitle.classList.add('show_title');
@@ -79,7 +80,7 @@ buttonSearch.addEventListener('click',()=>{
 buttonQuality.addEventListener('click',()=>{
     let quality = (localStorage.getItem('quality') == "HD") ? "SD" : "HD";
     localStorage.setItem('quality',quality);
-    setBackground();
+    setBackground(selectedDate);
     const buttonIcons = buttonQuality.getElementsByTagName('IMG');
     switchState(buttonIcons, 'invisible');
 })
@@ -94,8 +95,8 @@ buttonView.addEventListener('click',()=>{
 
 searchDate.addEventListener('click',e => {
     e.preventDefault();
-    const date = document.getElementById('date_input').value;
-    setBackground(date);
+    selectedDate = document.getElementById('date_input').value;
+    setBackground(selectedDate);
     backgroundImage.classList.toggle('blur');
     searchModal.classList.toggle('hidden');
     imgDescription.classList.add('hidden');
