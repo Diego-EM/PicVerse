@@ -5,12 +5,17 @@ const API_URL = `https://api.nasa.gov/planetary/apod?api_key=${API_TOKEN}`;
 const backgroundImage = document.getElementById('background_img');
 const backgroundTitle = document.getElementById('img_title');
 const imgDescription = document.getElementById('img_description');
+const searchModal = document.getElementById('search_modal');
 const buttonInfo = document.getElementById('button_info');
 const buttonQuality = document.getElementById('img_quality');
 const buttonView = document.getElementById('img_view');
+const buttonSearch = document.getElementById('img_search');
+const searchDate = document.getElementById('search_date');
 
-const setBackground = (date = "") => {
-    fetch(API_URL)
+const setBackground = (date) => {
+    let URL = API_URL
+    if (date) URL += `&date=${date}`;
+    fetch(URL)
         .then(res => res.json())
         .then(data => {
             backgroundImage.src = (localStorage.getItem('quality') == "HD") ? data.hdurl : data.url;
@@ -59,7 +64,16 @@ backgroundImage.onload = function(){
 
 buttonInfo.addEventListener('click',()=>{    
     imgDescription.classList.toggle('hidden');
-    backgroundImage.classList.toggle('blur');
+    if (searchModal.classList.contains('hidden'))
+        backgroundImage.classList.toggle('blur');
+    searchModal.classList.add('hidden');
+})
+
+buttonSearch.addEventListener('click',()=>{
+    searchModal.classList.toggle('hidden');
+    if (imgDescription.classList.contains('hidden'))
+        backgroundImage.classList.toggle('blur');
+    imgDescription.classList.add('hidden');
 })
 
 buttonQuality.addEventListener('click',()=>{
@@ -76,4 +90,13 @@ buttonView.addEventListener('click',()=>{
     backgroundImage.classList.toggle('contain');
     const buttonIcons = buttonView.getElementsByTagName('IMG');
     switchState(buttonIcons, 'invisible');
+})
+
+searchDate.addEventListener('click',e => {
+    e.preventDefault();
+    const date = document.getElementById('date_input').value;
+    setBackground(date);
+    backgroundImage.classList.toggle('blur');
+    searchModal.classList.toggle('hidden');
+    imgDescription.classList.add('hidden');
 })

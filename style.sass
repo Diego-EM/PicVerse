@@ -23,7 +23,7 @@ button
 
     img
         width: 100%
-        object-fit: cover
+        object-fit: contain
         transition: opacity 150ms
 
     &:hover > img
@@ -81,6 +81,39 @@ button
         font-size: 1.4em
         text-align: justify
 
+#search_modal
+    position: absolute
+    top: 0
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    height: 100%
+    width: 100%
+    z-index: 100
+
+    label
+        font-size: 2em
+        font-weight: 600
+        text-align: center
+        color: $white
+
+    div
+        display: flex
+        margin: 7px 0
+    
+    input
+        margin: 0 5px
+        padding: 5px
+        background-color: $white
+        border: none
+
+        &[type = "submit"]
+            cursor: pointer
+
+        &:focus
+            outline: none
+
 #button_info
     position: absolute
     left: 0
@@ -106,6 +139,9 @@ button
 
         img
             position: absolute
+    
+#img_search img
+    height: 28px
 
 .contain
     object-fit: contain !important
