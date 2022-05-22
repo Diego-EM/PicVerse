@@ -52,17 +52,17 @@ button:hover > img {
 #img_description {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   position: absolute;
   height: 100%;
   width: 70%;
   min-width: 350px;
   max-width: 1020px;
+  padding-top: 80px;
   color: #f1f1f1;
   overflow-y: auto;
   z-index: 100;
 }
-@media screen and (max-width: 600px), (max-height: 670px) {
+@media screen and (max-height: 670px) {
   #img_description {
     justify-content: start;
     padding: 20px;
