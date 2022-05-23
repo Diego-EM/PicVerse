@@ -7,6 +7,19 @@ $background: #1a1a29
     padding: 0
     box-sizing: border-box
     font-family: 'Poppins', sans-serif
+    //Firefox
+    scrollbar-width: auto
+    scrollbar-color: #f1f1f1 transparent
+    //Webkit browsers
+    &::-webkit-scrollbar
+        width: 3px
+
+    &::-webkit-scrollbar-track
+        background: transparent
+
+    &::-webkit-scrollbar-thumb
+        background-color: #f1f1f1
+        border-radius: 10px
 
 body
     display: flex
@@ -54,9 +67,9 @@ button
     position: absolute
     height: 100%
     width: 70%
-    min-width: 350px
+    min-width: 320px
     max-width: 1020px
-    padding: 80px 10px 20px 10px
+    padding: 80px 15px 20px 15px
     color: $white
     overflow-y: auto
     z-index: 100    
