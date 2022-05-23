@@ -57,16 +57,10 @@ button:hover > img {
   width: 70%;
   min-width: 350px;
   max-width: 1020px;
-  padding-top: 80px;
+  padding: 80px 10px 20px 10px;
   color: #f1f1f1;
   overflow-y: auto;
   z-index: 100;
-}
-@media screen and (max-height: 670px) {
-  #img_description {
-    justify-content: start;
-    padding: 20px;
-  }
 }
 #img_description #title, #img_description #author, #img_description #date {
   text-align: center;
@@ -152,6 +146,32 @@ button:hover > img {
   height: 28px;
 }
 
+#main_screen {
+  position: absolute;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  background-color: #1a1a29;
+  z-index: 1000000;
+}
+#main_screen img {
+  width: 10%;
+  min-width: 100px;
+  animation: loading 1s linear infinite backwards;
+}
+
+#error_message {
+  width: 50%;
+  min-width: 250px;
+  max-width: 1200px;
+  color: #f1f1f1;
+  font-size: 3em;
+  text-align: center;
+}
+
 .contain {
   object-fit: contain !important;
 }
@@ -210,6 +230,11 @@ button:hover > img {
   100% {
     opacity: 1;
     transform: scale(1);
+  }
+}
+@keyframes loading {
+  100% {
+    transform: rotateZ(360deg);
   }
 }
 
