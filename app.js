@@ -11,10 +11,12 @@ const buttonQuality = document.getElementById('img_quality');
 const buttonView = document.getElementById('img_view');
 const buttonSearch = document.getElementById('img_search');
 const searchDate = document.getElementById('search_date');
+const loadScreen = document.getElementById('main_screen');
 
 let selectedDate = "";
 
 const setBackground = (date) => {
+    loadScreen.classList.remove('hidden');
     let URL = API_URL
     if (date) URL += `&date=${date}`;
     fetch(URL)
@@ -47,13 +49,24 @@ const switchState = (elements = [], cl = "class") =>{
     }
 }
 
+const hideLoadScreen = () =>{
+    const loading = document.getElementById('loading');
+    const errorMsg = document.getElementById('error_message');
+    loadScreen.classList.add('hidden');
+    loading.classList.remove('hidden');
+    errorMsg.classList.add('hidden');
+    loadScreen.style.zIndex = 1000000
+}
+
 setBackground();
 initializeState(buttonQuality, 'invisible', "quality", "HD");
 initializeState(buttonView, 'invisible', "view", "contain");
 
 if (localStorage.getItem('view') == "contain")
     backgroundImage.classList.add('contain')
-backgroundImage.onload = function(){
+
+backgroundImage.onload = function() {
+    loadScreen.classList.add('hidden');
     this.classList.add('presentation');
     backgroundTitle.classList.add('show_title');
     buttonInfo.classList.remove('invisible');
@@ -63,11 +76,26 @@ backgroundImage.onload = function(){
     })
 }
 
+backgroundImage.onerror = function() {
+    const loading = document.getElementById('loading');
+    const errorMsg = document.getElementById('error_message');
+    errorMsg.classList.remove('hidden');
+    loading.classList.add('hidden');
+    loadScreen.style.zIndex = 100;
+    if (this.src === `${location.href}undefined`){
+        errorMsg.textContent = "There's no pic for today :(. Try another date.";
+    } else {
+        errorMsg.innerHTML = `Oooops, videos are not supported yet :(.
+            But you can see the video <a href=${this.src} target="_blank">here</a>.`;
+    }
+}
+
 buttonInfo.addEventListener('click',()=>{    
     imgDescription.classList.toggle('hidden');
     if (searchModal.classList.contains('hidden'))
         backgroundImage.classList.toggle('blur');
     searchModal.classList.add('hidden');
+    hideLoadScreen();
 })
 
 buttonSearch.addEventListener('click',()=>{
@@ -75,6 +103,7 @@ buttonSearch.addEventListener('click',()=>{
     if (imgDescription.classList.contains('hidden'))
         backgroundImage.classList.toggle('blur');
     imgDescription.classList.add('hidden');
+    hideLoadScreen();
 })
 
 buttonQuality.addEventListener('click',()=>{

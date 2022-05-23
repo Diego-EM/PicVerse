@@ -1,5 +1,6 @@
 $loadImageTimer: 2.5s
 $white: #f1f1f1
+$background: #1a1a29
 
 *
     margin: 0
@@ -10,7 +11,7 @@ $white: #f1f1f1
 body
     display: flex
     justify-content: center
-    background-color: #1a1a29
+    background-color: $background
     overflow: hidden
     user-select: none
 
@@ -55,15 +56,10 @@ button
     width: 70%
     min-width: 350px
     max-width: 1020px
-    padding-top: 80px
+    padding: 80px 10px 20px 10px
     color: $white
     overflow-y: auto
-    z-index: 100
-
-    // @media screen and ( max-width: 600px ), ( max-height: 670px)
-    @media screen and ( max-height: 670px)
-        justify-content: start
-        padding: 20px
+    z-index: 100    
 
     #title, #author, #date
         text-align: center
@@ -144,6 +140,30 @@ button
 #img_search img
     height: 28px
 
+#main_screen
+    position: absolute
+    top: 0
+    display: flex
+    align-items: center
+    justify-content: center
+    height: 100%
+    width: 100%
+    background-color: $background
+    z-index: 1000000
+
+    img
+        width: 10%
+        min-width: 100px
+        animation: loading 1s linear infinite backwards
+
+#error_message
+    width: 50%
+    min-width: 250px
+    max-width: 1200px
+    color: $white
+    font-size: 3em
+    text-align: center
+
 .contain
     object-fit: contain !important
 
@@ -188,4 +208,9 @@ button
         transform: scale(0.95)
     100%
         opacity: 1
-        transform: scale(1)        
+        transform: scale(1)
+
+@keyframes loading
+    100%
+        transform: rotateZ(360deg)
+                
